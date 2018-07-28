@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "name": "dnozdrin/warmy",
+    "description": "Raspberry Pi based thermostat system with web control interface (for heating)",
+    "keywords": ["Raspberry", "GPIO", "Laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
