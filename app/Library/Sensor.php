@@ -18,7 +18,7 @@ class Sensor
      */
     public function __construct()
     {
-        $sensorId = env('SENSOR_ID', false);
+        $sensorId = config('app.sensor_id', false);
         if ($sensorId === false) {
             throw new \Exception('Sensor ID was not configured!', 1532625136);
         }

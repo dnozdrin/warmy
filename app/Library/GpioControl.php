@@ -18,7 +18,7 @@ class GpioControl
      */
     public function __construct()
     {
-        $this->pin = (int)env('GPIO_PIN');
+        $this->pin = (int)config('app.gpio_pin');
         $this->setPinOutput();
     }
 
