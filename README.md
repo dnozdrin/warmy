@@ -1,6 +1,8 @@
 # Warmy
 Raspberry Pi based thermostat system with web control interface (for heating)
 
+[![version][version-badge]][CHANGELOG] [![license][license-badge]][LICENSE]
+
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine.
 
@@ -71,3 +73,8 @@ Composer installation issues
 
 ## License
 The application is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+[CHANGELOG]: ./CHANGELOG.md
+[LICENSE]: ./LICENSE
+[version-badge]: https://img.shields.io/badge/version-1.0.1-blue.svg
+[license-badge]: https://img.shields.io/badge/license-MIT-blue.svg
