@@ -42,7 +42,7 @@ class MainController extends Controller
 
         return view('templates.main.index', [
             'time' => date('H:i'),
-            'temperature' => $this->sensor->temperatureFormatted(),
+            'temperature' => $this->sensor->getTemperatureFormatted(),
             'mode' => $mode,
         ]);
     }

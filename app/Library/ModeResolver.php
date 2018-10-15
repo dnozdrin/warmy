@@ -41,4 +41,14 @@ class ModeResolver
 
         return $mode;
     }
+
+    /**
+     * @return float
+     */
+    public function getTargetTemperature(): float
+    {
+        $mode = $this->findSuitableMode();
+
+        return (float)$mode->target_temperature;
+    }
 }

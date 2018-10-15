@@ -3,10 +3,12 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Library\Sensor;
-use App\Library\ModeResolver;
-use App\Library\GpioControl;
+use App\Library\HeaterControl;
 
+/**
+ * Class Thermostat
+ * @package App\Console\Commands
+ */
 class Thermostat extends Command
 {
     /**
@@ -24,32 +26,18 @@ class Thermostat extends Command
     protected $description = 'Trigger temperature fetch and a relay toggle';
 
     /**
-     * @var Sensor
+     * @var HeaterControl
      */
-    protected $sensor;
-
-    /**
-     * @var ModeResolver
-     */
-    protected $modeResolver;
-
-    /**
-     * @var GpioControl
-     */
-    protected $gpioControl;
+    protected $heaterControl;
 
     /**
      * Thermostat constructor.
-     * @param Sensor $sensor
-     * @param ModeResolver $modeResolver
-     * @param GpioControl $gpioControl
+     * @param HeaterControl $heaterControl
      */
-    public function __construct(Sensor $sensor, ModeResolver $modeResolver, GpioControl $gpioControl)
+    public function __construct(HeaterControl $heaterControl)
     {
         parent::__construct();
-        $this->sensor = $sensor;
-        $this->modeResolver = $modeResolver;
-        $this->gpioControl = $gpioControl;
+        $this->heaterControl = $heaterControl;
     }
 
     /**
@@ -59,13 +47,6 @@ class Thermostat extends Command
      */
     public function handle()
     {
-        $mode = $this->modeResolver->findSuitableMode();
-        $temperature = $this->sensor->temperatureFormatted();
-
-        if ($mode->target_temperature > $temperature) {
-            $this->gpioControl->turnOn();
-        } else {
-            $this->gpioControl->turnOff();
-        }
+        $this->heaterControl->handle();
     }
 }

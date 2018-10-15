@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Library\GpioControl;
+use App\Library\Gpio\GpioWriter;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,8 +24,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(GpioControl::class, function($app) {
-            return new GpioControl;
-        });
+        //
     }
 }

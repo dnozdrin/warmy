@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Library;
+namespace App\Library\Gpio;
 
 /**
  * Class GpioControl
- * @package App\Library
+ * @package App\Library\Gpio
  */
-class GpioControl
+abstract class GpioControl
 {
     /**
      * @var int
@@ -14,7 +14,7 @@ class GpioControl
     protected $pin;
 
     /**
-     * GpioControl constructor.
+     * GpioWriter constructor.
      */
     public function __construct()
     {
@@ -28,21 +28,5 @@ class GpioControl
     private function setPinOutput()
     {
         exec("gpio -g mode {$this->pin} out");
-    }
-
-    /**
-     * Turn on a relay
-     */
-    public function turnOn()
-    {
-        exec("gpio -g write {$this->pin} 1");
-    }
-
-    /**
-     * Turn off a relay
-     */
-    public function turnOff()
-    {
-        exec("gpio -g write {$this->pin} 0");
     }
 }

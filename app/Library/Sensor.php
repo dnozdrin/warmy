@@ -30,7 +30,7 @@ class Sensor
      * @return int
      * @throws \Exception
      */
-    private function temperature(): int
+    private function retrieveTemperature(): int
     {
         $sensorResponse = file($this->sensorPath);
         if ($sensorResponse === false) {
@@ -45,8 +45,8 @@ class Sensor
      * @return float
      * @throws \Exception
      */
-    public function temperatureFormatted(): float
+    public function getTemperatureFormatted(): float
     {
-        return round($this->temperature() / 1000, 1);
+        return round($this->retrieveTemperature() / 1000, 1);
     }
 }
