@@ -25,7 +25,9 @@ return [
     /*
      * Main
      */
-    'current_conditions' => 'Current conditions:',
+    'current_conditions' => 'Current state:',
+    'state_heating_on' => 'heating ON',
+    'state_heating_off' => 'heating OFF',
     'time' => 'Time:',
     'temperature' => 'Temperature:',
     'mode' => 'Mode:',

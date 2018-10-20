@@ -8,7 +8,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">@lang('strings.current_conditions')</div>
+                <div class="card-header">
+                    <span>@lang('strings.current_conditions')</span>
+                    @if ($isGpioPinActive === true)
+                        <span class="badge badge-danger">@lang('strings.state_heating_on')</span>
+                    @else
+                        <span class="badge badge-secondary">@lang('strings.state_heating_off')</span>
+                    @endif
+                </div>
                 <div class="card-body">
                     <div class="container">
                         <div class="row">

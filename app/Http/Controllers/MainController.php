@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Library\Sensor;
 use App\Library\ModeResolver;
+use App\Library\Gpio\GpioReader;
 
 /**
  * Class MainController
@@ -22,14 +23,24 @@ class MainController extends Controller
     protected $modeResolver;
 
     /**
+     * @var GpioReader
+     */
+    protected $gpioReader;
+
+    /**
      * MainController constructor.
      * @param Sensor $sensor
      * @param ModeResolver $modeResolver
+     * @param GpioReader $gpioReader
      */
-    public function __construct(Sensor $sensor, ModeResolver $modeResolver)
-    {
+    public function __construct(
+        Sensor $sensor,
+        ModeResolver $modeResolver,
+        GpioReader $gpioReader
+    ) {
         $this->sensor = $sensor;
         $this->modeResolver = $modeResolver;
+        $this->gpioReader = $gpioReader;
     }
 
     /**
@@ -44,6 +55,7 @@ class MainController extends Controller
             'time' => date('H:i'),
             'temperature' => $this->sensor->getTemperatureFormatted(),
             'mode' => $mode,
+            'isGpioPinActive' => $this->gpioReader->isPinActive(),
         ]);
     }
 }
