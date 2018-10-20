@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 - Statistics.
 - Remote access form web.
 
+## [1.0.2] - 2018-10-20
+### Added
+- Display current heating status on the main page
+
 ## [1.0.1] - 2018-10-15
 ### Added
 - Changelog.
