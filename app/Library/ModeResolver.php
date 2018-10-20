@@ -16,8 +16,10 @@ class ModeResolver
     public function findSuitableMode()
     {
         $time = date('H:i:s');
-        $mode = Mode::whereHas('days', function($query) {
-                $query->where('identifier', '=', (int)date('w'));
+        $day = $this->getCurrentDayNumber();
+
+        $mode = Mode::whereHas('days', function($query) use ($day) {
+                $query->where('identifier', '=', $day);
             })
             ->where(function ($query) use ($time) {
                 $query->where([
@@ -27,8 +29,10 @@ class ModeResolver
                 ])->whereColumn('period_start', '<', 'period_end');
             })
             ->orWhere(function ($query) use ($time) {
-                $query->whereColumn('period_start', '>', 'period_end')
-                  ->where(function ($query) use ($time) {
+                // for night time
+                $query
+                    ->whereColumn('period_start', '>', 'period_end')
+                    ->where(function ($query) use ($time) {
                       $query->where([
                           ['enabled', '=', 1],
                           ['period_start', '<=', $time],
@@ -40,6 +44,16 @@ class ModeResolver
             ->first();
 
         return $mode;
+    }
+
+
+    /**
+     * @return int
+     */
+    private function getCurrentDayNumber()
+    {
+        $day = (int)date('w');
+        return $day > 0 ? $day : 7;
     }
 
     /**
